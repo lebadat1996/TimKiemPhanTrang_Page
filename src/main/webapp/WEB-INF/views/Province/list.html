@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p><a th:href="@{/province/create}">Add province</a></p>
+<form action="#" th:action="@{province}" th:object="${province}" method="post">
+    <table style="border: 1px solid black">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Action1</th>
+            <th>Action2</th>
+        </tr>
+        <tr th:each="p:${province}">
+            <td th:text="${p.id}"></td>
+            <td th:text="${p.name}"></td>
+            <td><a th:href="@{/province/{id}/edit(id= ${p.id}) }">Edit</a></td>
+            <td><a th:href="@{/province/{id}/delete(id= ${p.id}) }">Delete</a></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
