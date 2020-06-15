@@ -35,13 +35,7 @@ public class CustomerController {
         return modelAndView;
     }
 
-//    @GetMapping("/list")
-//    public ModelAndView showList() {
-//        ModelAndView modelAndView = new ModelAndView("Customer/list");
-//        Iterable<Customer> customers = customerService.findAll();
-//        modelAndView.addObject("customers", customers);
-//        return modelAndView;
-//    }
+
 
     @GetMapping("/list")
     public ModelAndView listCustomers(@RequestParam("s") Optional<String> s, @RequestParam(defaultValue = "0") int page,
