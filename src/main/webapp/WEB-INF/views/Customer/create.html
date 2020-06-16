@@ -8,7 +8,7 @@
 <h1 th:text="#{create.heading}">r</h1>
 Language: <a href="?lang=en">English</a> |  <a href="?lang=vn">Vietnamese</a>
 <p>
-    <a href="/customer/list" th:text="#{create.list}"></a>
+    <a href="/list" th:text="#{create.list}"></a>
 </p>
 <form th:action="@{/customer/save}" th:object="${customer}" method="post">
     <table>

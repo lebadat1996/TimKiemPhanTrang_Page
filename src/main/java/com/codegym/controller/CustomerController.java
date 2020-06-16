@@ -13,10 +13,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("customer")
+@RequestMapping("/")
 public class CustomerController {
     @Autowired
     private ICustomerService customerService;
@@ -28,14 +29,33 @@ public class CustomerController {
         return provinceService.findAll();
     }
 
-    @GetMapping("/create")
+    @GetMapping("create")
     public ModelAndView showCreateForm() {
         ModelAndView modelAndView = new ModelAndView("/Customer/create");
         modelAndView.addObject("customer", new Customer());
         return modelAndView;
     }
 
+    @GetMapping("index")
+    public ModelAndView showIndex() {
+        ModelAndView modelAndView = new ModelAndView("/Customer/index");
+        return modelAndView;
+    }
 
+    @GetMapping("user")
+    public ModelAndView user() {
+        ModelAndView modelAndView = new ModelAndView("/Customer/home");
+        Iterable<Customer> customers = customerService.findAll();
+        modelAndView.addObject("customers", customers);
+        return modelAndView;
+    }
+
+    @GetMapping("admin")
+    public ModelAndView admin() {
+        ModelAndView modelAndView = new ModelAndView("/Customer/list");
+        modelAndView.addObject("customers", customerService.findAll());
+        return modelAndView;
+    }
 
     @GetMapping("/list")
     public ModelAndView listCustomers(@RequestParam("s") Optional<String> s, @RequestParam(defaultValue = "0") int page,
