@@ -1,8 +1,10 @@
 package com.codegym.config;
 
 
+import com.codegym.service.CustomerProvince.AppUserService;
 import com.codegym.service.CustomerProvince.CustomerService;
 import com.codegym.service.CustomerProvince.ProvinceService;
+import com.codegym.service.ICustomerProvince.IAppUserService;
 import com.codegym.service.ICustomerProvince.ICustomerService;
 import com.codegym.service.ICustomerProvince.IProvinceService;
 import org.springframework.context.ApplicationContext;
@@ -11,6 +13,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
@@ -45,6 +48,7 @@ import java.util.Properties;
 @EnableJpaRepositories("com.codegym.repository")
 @EnableTransactionManagement
 @EnableSpringDataWebSupport
+@EnableAspectJAutoProxy
 public class AppConfiguration extends WebMvcConfigurerAdapter implements ApplicationContextAware {
     private ApplicationContext applicationContext;
 
@@ -139,7 +143,10 @@ public class AppConfiguration extends WebMvcConfigurerAdapter implements Applica
         return new ProvinceService();
     }
 
-
+    @Bean
+    public IAppUserService appUserService() {
+        return new AppUserService();
+    }
 
     @Bean
     public MessageSource messageSource() {
